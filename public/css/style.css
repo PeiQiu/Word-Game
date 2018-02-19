@@ -1,0 +1,112 @@
+body {
+  padding: 16px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+#login-form {
+  max-width : 600px;
+  min-width: 300px;
+  padding: 15px;
+  background-color: rgba(234,235,237,0.4);
+  border-radius: .5em;
+  margin-top: 1em;
+}
+
+.games-title {
+  font-size: 400%;
+  text-shadow : 3px 3px 3px black;
+  font-family : 'Montserrat', sans-serif;
+  font-weight : bold;
+  color : white;
+  letter-spacing : 3px;
+}
+
+.pre_background {
+  background-image: url("../images/background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+
+
+.container{
+  padding-left: 0em;
+}
+
+#select_font{
+  width : 8em;
+  margin-left: 1em;
+}
+
+#select_level{
+  width: 10em;
+  margin-left: 1em;
+}
+
+#front_div{
+  margin-left: 1em;
+}
+
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th,
+.table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th,
+.table-condensed>thead>tr>td, .table-condensed>thead>tr>th{
+  border-color: #eeeeee;
+  padding: 8px;
+  border-top-color: #eeeeee ;
+}
+
+table{
+  border-collapse : inherit;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+#word{
+  width: 4em;
+}
+
+#div2 label{
+  margin: 2px;
+  padding: 6px;
+  font-size: 48px;
+}
+
+#div2{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+#div1 label{
+  margin: 1px;
+  padding: 4px;
+  font-size: 24px;
+}
+
+#div1{
+  margin-right:16px;
+}
+
+.btn-danger{
+  margin-right: 8px;
+}
+
+tbody > tr > td > span{
+  margin: 2px;
+  padding: 2px;
+  font-size: 18px;
+}
+
+#editUserModal {
+  position : absolute;
+  top : 0;
+  left : 50%;
+  top : 50%;
+  transform : translate(-50%, -50%);
+}

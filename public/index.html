@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous">
+    </script>
+
+    <script src="js/app.js"></script>
+
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class = "container">
+        <div id="login">
+            <div class="games-title">Word Game</div>
+            <form id="login-form" class="pull-right">
+                <h3>Welcome</h3>
+                <div>
+                    <div>
+                        <div class="form-group">
+                            <label for="login_username" class="sr-only">Username</label>
+                            <input type="text" class="form-control" id="login_username" placeholder="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="login_password" class="sr-only">Password</label>
+                            <input type="password" class="form-control" id="login_password" placeholder="password">
+                        </div>
+                    </div>
+                        <button type="submit" onclick="login(event)" class="btn btn-primary btn-sm">Login
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div id = "user_content">
+            <div class="well well-sm">
+                <span>Welcome to Guess Word Game</span>
+                <span class="btn btn-xs btn-default pull-right" style="display:inline-block;" onclick="logout(event)">logout</span>
+                <span class="pull-right" id="email" style="margin-right: 1em;"></span>
+            </div>
+
+            <div class = "well well-sm" style="background-color: #eeeeee">
+                <form class="form-inline" style="background-color:#eeeeee">
+                    <div class="form-group">
+                        <label> Font </label>
+                        <select id = "select_font" class="form-control">
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label > Level </label>
+                        <select id = "select_level" class="form-control">
+
+                        </select>
+                    </div>
+
+                    <div id = "front-div" class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: gainsboro">Word</div>
+                            <input id = "color_word"type="color" style="width: 4em" class="form-control" >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: gainsboro">Guess</div>
+                            <input id = "color_guess" type="color" style="width: 4em" class="form-control" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="background-color: gainsboro">Fore</div>
+                            <input id = "color_fore" type="color" style="width: 4em" class="form-control" >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group pull-right" >
+                        <button id="create_game" onclick="createGame(event)" type="button" class="btn btn-primary pull-right" >New Game</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <table id = "table" class="well-sm table table-condensed" style="border: 0em;background-color:#eeeeee ;">
+                <thead>
+                    <tr >
+                        <th> Level </th>
+                        <th> Phrase </th>
+                        <th> Remaining </th>
+                        <th> Answer </th>
+                        <th> Status </th>
+                    </tr>
+                </thead>
+
+                <tbody id = "game_table"></tbody>
+            </table>
+        </div>
+
+
+        <div id = "game_holder">
+                <div id = "holder_background"class="well well-sm">
+                    <div class="form-inline">
+                        <button type="button" onclick="cancel()" class="btn btn-danger btn-xs pull-right">&times;</button>
+                        <div id = "holder_control"class = "form-group">
+                            <span id = "showremaining"></span>
+                            <input type = "text" id = "word" class = "form-control">
+                            <span id = "game_guess" onclick = "makeGuess()" class="btn btn-sm btn-primary btn-xs">Guess</span>
+                        </div>
+                    </div>
+
+                    <form class="form-inline">
+                        <div id = "div1" class="form-group pull-right"></div>
+                    </form>
+
+                    <form class="form-inline">
+                        <div id = "div2" class="form-group"></div>
+                    </form>
+                </div>
+        </div>
+
+
+            <!-- The user-list-view page -->
+        <div id="admin_content">
+                <div class="well well-sm">
+                    <span>Welcome to admin page</span>
+                    <span class="btn btn-xs btn-default pull-right" style="display:inline-block;" onclick="logout(event)">logout</span>
+                    <span class="pull-right" id="admin_email" style="margin-right: 1em;"></span>
+                </div>
+
+                <div class="well well-sm">
+                    <form class="form-inline">
+                        <span onclick="showuserviewpage()" class="btn btn-sm btn-primary">add user</span>
+                        <span onclick="showmetadatapage()" class="btn btn-sm btn-primary">view metadata</span>
+                        <div class="input-group pull-right">
+                            <div>
+                            <input id="search_string" type="text" class="form-control" placeholder="search for User...">
+                            <select id = "select_user" class="btn btn-default form-control">
+                                <option value="0">Disable</option>
+                                <option value="1" selected="selected">Enable</option>
+                            </select>
+                            </div>
+                            <span class="input-group-btn">
+                            <button class="btn btn btn-primary" onclick="searchUsers(event)">
+                            <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <table id="user_table" class="table table-condensed"></table>
+        </div>
+
+            <!-- The user-view page -->
+        <div id="editUserModal">
+                <div class="well well-sm">
+                    <form class="form-horizontal" style="margin-top: 1em;">
+
+                        <div class="form-group">
+                            <label for="user_firstname" class="col-sm-2 control-label">First Name：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="user_firstname" placeholder="firstname" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_lastname" class="col-sm-2 control-label">Last Name：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="user_lastname" placeholder="lastname" >
+                            </div>
+                        </div>
+
+                        <div id = "add_user_password" class="form-group">
+                            <label for="user_password" class="col-sm-2 control-label">Password：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="password" id="user_password" placeholder="password" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_email" class="col-sm-2 control-label">Email：</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="user_email" placeholder="email" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_role" class="col-sm-2 control-label">Role：</label>
+                            <div class="col-sm-10">
+                                <select id = "user_role" class="form-control" >
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="user_status" class="col-sm-2 control-label">Status：</label>
+                            <div class="col-sm-10">
+                            <select id = "user_status" class="form-control" >
+                                <option value="1" selected="selected">Enable</option>
+                                <option value="0">Disable</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 1em;overflow:auto; margin-left: 3%">
+                            <span id = "add_user_button" onclick="createUser()" class="btn btn-sm btn-primary  pull-left">Create</span>
+                            <span id = "update_user_button" onclick="updateUser()" class="btn btn-sm btn-danger pull-left">Update</span>
+                            <span onclick="cancelUserEditModal()" class="btn btn-sm btn-warning pull-right">Cancel</span>
+                        </div>
+                    </form>
+                </div>
+        </div>
+            <!--Metadata-view-->
+        <div id="metadata_view">
+            <div class="well well-sm">
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#fonts_table_view" aria-controls="home" role="tab" data-toggle="tab">Fonts</a></li>
+                    <li role="presentation"><a href="#levels_table_view" aria-controls="profile" role="tab" data-toggle="tab">Levels</a></li>
+                    <li role="presentation"><a href="#defaults_table_view" aria-controls="messages" role="tab" data-toggle="tab">Defaults</a></li>
+                    <li class="navbar-right" role="presentation"><button type="button" onclick="cancelMetadataView()" class="btn btn-danger btn-xs pull-right">&times;</button></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="fonts_table_view">
+                        <table class="well-sm table table-condensed" style="border: 0em;background-color:#eeeeee ;">
+                            <thead>
+                            <tr >
+                                <th> Defaults </th>
+                                <th> Rule </th>
+                                <th> Family </th>
+                                <th> Url </th>
+                                <th> Category </th>
+                                <th><button type="button" class="btn btn-success" style="width : 84%" onclick="showAddFontRow(true)"> Add </button></th>
+                            </tr>
+                            </thead>
+                            <tbody id="fonts_table" class="table table-condensed">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div role="tabpanel" class="tab-pane" id="levels_table_view">
+                        <table class="well-sm table table-condensed" style="border: 0em;background-color:#eeeeee ;">
+                            <thead>
+                            <tr >
+                                <th> Defaults </th>
+                                <th> Name </th>
+                                <th> MinLength </th>
+                                <th> MaxLength </th>
+                                <th> Guesses </th>
+                                <th><button type="button" class="btn btn-success" style= "width: 84%" onclick="showAddlevelRow(true)"> Add </button></th>
+                            </tr>
+                            </thead>
+                            <tbody id="levels_table" class="table table-condensed">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div role="tabpanel" class="tab-pane" id="defaults_table_view">
+                        <form id="defaults_table" class="form-inline" style="background-color:#eeeeee">
+                            <div class="form-group well-sm">
+                                <div class="input-group ">
+                                    <div class="input-group-addon form-control" style="background-color: gainsboro">default colors:</div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="background-color: gainsboro">Word</div>
+                                    <input id = "defaults_color_word"type="color" style="width: 4em" class="form-control" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="background-color: gainsboro">Guess</div>
+                                    <input id = "defaults_color_guess" type="color" style="width: 4em" class="form-control" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon" style="background-color: gainsboro">Fore</div>
+                                    <input id = "defaults_color_fore" type="color" style="width: 4em" class="form-control" >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
